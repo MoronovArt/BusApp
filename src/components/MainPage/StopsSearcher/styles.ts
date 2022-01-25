@@ -12,19 +12,26 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         paddingHorizontal: scale(5),
-        paddingVertical: verticalScale(10)
+        paddingVertical: verticalScale(10),
+        borderColor: Colors.PrimaryRed,
+        borderWidth: 1,
+        minHeight: moderateScale(50)
     },
     StopsSearcher_Text: {
         flex:1,
         paddingHorizontal: scale(4),
-        fontFamily: 'Montserrat-Medium'
+        fontFamily: 'Montserrat-Medium',
+        color: Colors.Black,
+        fontSize: fontScale(12)
     },
     StopsSearcher_Container: {
         marginHorizontal: scale(10),
-        marginVertical: verticalScale(10)
+        marginVertical: verticalScale(10),
+        flexDirection: "row",
     },
-    StopsSearcher_Label: {
-        marginBottom: verticalScale(5),
-        fontFamily: 'Montserrat-Medium'
-    }
+    StopsSearcher_QrContainer: {
+        paddingLeft: scale(8),
+        justifyContent: "center",
+        alignItems: "center"
+    },
 });

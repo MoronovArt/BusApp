@@ -1,22 +1,36 @@
 import {init, RematchDispatch, RematchRootState} from '@rematch/core';
-import createRematchPersist from '@rematch/persist';
+import persist from '@rematch/persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as models from './models';
-import {RootModel} from "./models";
+import { models, RootModel } from './models';
+
 
 export type Store = typeof store
 export type Dispatch = RematchDispatch<RootModel>
 export type RootState = RematchRootState<RootModel>
 
-const persistPlugin = createRematchPersist({
+const persistPlugin = persist({
     key: 'root',
     blacklist: [],
     storage: AsyncStorage,
 });
 
+const middlewares = [];
+
+if (__DEV__) {
+    const createDebugger = require("redux-flipper-colorized").default;
+    middlewares.push(createDebugger());
+}
+
 const store = init({
     models,
-    plugins: [persistPlugin],
+    plugins: [
+        // @ts-ignore
+        persistPlugin
+    ],
+    redux: {
+        middlewares,
+        devtoolOptions: { disabled: false },
+    }
 });
 
 export default store;

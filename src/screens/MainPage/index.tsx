@@ -1,14 +1,19 @@
 import React from "react";
 import { styles as s} from './styles';
-import {SafeAreaView, View} from "react-native";
-import {MainPageHeader, StopsSearcher} from "../../components";
+import {SafeAreaView} from "react-native";
+import {ArrivalList, CityInfo, MainPageHeader, StopsSearcher} from "../../components";
+import {View} from "react-native";
 
 
 const MainPage = () => {
     return (
         <SafeAreaView style={s.MainPage}>
-            <MainPageHeader/>
-            <StopsSearcher/>
+            <View style={{flex:1}}>
+                <MainPageHeader/>
+                <StopsSearcher/>
+                <ArrivalList/>
+            </View>
+            <CityInfo/>
         </SafeAreaView>
     )
 }

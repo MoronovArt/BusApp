@@ -4,12 +4,12 @@ import {StyleSheet} from "react-native";
 export const styles = StyleSheet.create({
     iconQRStyle: {
         color: Colors.White,
-        width: moderateScale(35)
+        width: moderateScale(40)
     },
     IconQRContainer: {
         backgroundColor: Colors.PrimaryRed,
-        width: moderateScale(50),
-        height: moderateScale(50),
+        width: moderateScale(55),
+        height: moderateScale(55),
         justifyContent: "center",
         alignItems: "center",
     },

@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         borderColor: Colors.PrimaryRed,
         flex:1,
         backgroundColor: Colors.White,
-        minHeight: verticalScale(45)
+        height: moderateScale(55)
     },
     iconStyle: {
         color: Colors.PrimaryRed,
@@ -28,7 +28,8 @@ export const styles = StyleSheet.create({
         flex:1,
         fontFamily: 'Montserrat-Medium',
         fontSize: fontScale(16),
-        color: Colors.Black
+        color: Colors.Black,
+        paddingLeft: scale(5)
     },
     SearchInput_Text: {
         fontFamily: 'Montserrat-Bold',

@@ -4,7 +4,10 @@ import {fontScale, moderateScale, scale, verticalScale} from "../../styles/Utils
 
 export const styles = StyleSheet.create({
     SettingsPage: {
-        backgroundColor: Colors.Gray
+        backgroundColor: Colors.PrimaryRed,
+    },
+    SettingsPage_ViewContent: {
+        backgroundColor: Colors.Gray,
     },
     SettingsPage_Content: {
         paddingHorizontal: scale(10),

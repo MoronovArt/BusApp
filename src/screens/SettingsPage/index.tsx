@@ -18,9 +18,9 @@ const SettingsPage = () => {
     }
     return (
         <SafeAreaView style={s.SettingsPage}>
-            <StackHeader title={"Настройки"}/>
-            <View style={s.SettingsPage_Content}>
-                <View>
+            <View style={s.SettingsPage_ViewContent}>
+                <StackHeader title={"Настройки"}/>
+                <View style={s.SettingsPage_Content}>
                     <Text style={s.SettingsPage_CityTitle}>Текущий город</Text>
                     <TouchableOpacity onPress={onPressCityButton}>
                         <View style={s.SettingsPage_CityButton}>

@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+import Colors from "../../styles/Colors";
 
 export const styles = StyleSheet.create({
     StopsPage_Container: {
-        flex:1
+        backgroundColor: Colors.PrimaryRed
     },
     StopsPage: {
-        flex:1
+        backgroundColor: Colors.Gray
     }
 });

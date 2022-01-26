@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         paddingVertical: verticalScale(10),
         borderColor: Colors.PrimaryRed,
         borderWidth: 1,
-        minHeight: moderateScale(50)
+        height: moderateScale(55)
     },
     StopsSearcher_Text: {
         flex:1,

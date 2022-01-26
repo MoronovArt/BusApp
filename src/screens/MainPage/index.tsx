@@ -8,7 +8,7 @@ import {View} from "react-native";
 const MainPage = () => {
     return (
         <SafeAreaView style={s.MainPage}>
-            <View style={{flex:1}}>
+            <View style={s.MainPage_Content}>
                 <MainPageHeader/>
                 <StopsSearcher/>
                 <ArrivalList/>

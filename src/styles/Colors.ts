@@ -4,5 +4,6 @@ export default {
     Gray: '#f4f4f4',
     Blue: '#13c1fe',
     TouchableRed: "#f5a9a9",
-    Black: '#030303'
+    Black: '#030303',
+    Green: '#32B914'
 }

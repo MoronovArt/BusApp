@@ -12,24 +12,32 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: Colors.Blue,
-        paddingVertical: verticalScale(6),
         borderRadius: 10,
-        maxWidth: scale(55),
-        minWidth: scale(55)
+    },
+    ArrivalItem_IconContainerStyle: {
+        paddingVertical: verticalScale(6),
+        paddingHorizontal: scale(5),
+        height: moderateScale(35),
+        width: moderateScale(35)
     },
     ArrivalItem_IconStyle: {
-        width: moderateScale(25),
-        height: moderateScale(25),
-        marginRight:scale(4)
+        flex: 1,
+        width: undefined,
+        height: undefined,
+        resizeMode: 'contain',
     },
     ArrivalItem_Text: {
         fontFamily: 'Montserrat-Medium',
         fontSize: fontScale(15),
-        color: Colors.Black
+        color: Colors.Black,
+
     },
     ArrivalItem_TextWhite: {
-        color: Colors.White
+        color: Colors.White,
+        paddingRight: scale(5),
+        minWidth: scale(25),
+        textAlign: "right",
+        fontSize: fontScale(16)
     },
     ArrivalItem_Column: {
         justifyContent: "center",
@@ -45,5 +53,14 @@ export const styles = StyleSheet.create({
     },
     Padding_8: {
         paddingHorizontal: scale(8),
-    }
+    },
+    ArrivalItem_IconStyleRed: {
+        backgroundColor: Colors.PrimaryRed
+    },
+    ArrivalItem_IconStyleGreen: {
+        backgroundColor: Colors.Green
+    },
+    ArrivalItem_IconStyleBlue: {
+        backgroundColor: Colors.Blue
+    },
 });

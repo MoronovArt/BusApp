@@ -1,16 +1,32 @@
-import React from "react";
+import React, {useMemo} from "react";
 import { styles as s} from './styles';
 import {Image, Text, View} from "react-native";
 // @ts-ignore
 import BusIcon from "../../../assets/bus.png";
+// @ts-ignore
+import TramIcon from "../../../assets/tram.png";
+// @ts-ignore
+import TrollIcon from "../../../assets/troll.png";
 import {TForecast} from "../../../api/Api";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store";
+
 
 
 const ArrivalItem = ({distance_to_stoppoint, rem_minutes, route_name, stoppoint_name, forecast_time_arrival, route_description}: TForecast) => {
+
+    const stopType = useSelector((state: RootState) => state.bus_stops?.selectedStop.transport_type);
+
+    const stopStyle = useMemo(() => (stopType === "АВТОБУС" ? s.ArrivalItem_IconStyleBlue : (stopType === "ТРАМВАЙ" ? s.ArrivalItem_IconStyleRed : s.ArrivalItem_IconStyleGreen)), [stopType]);
+
+    const IconSource = useMemo(() => (stopType === "АВТОБУС" ? BusIcon : (stopType === "ТРАМВАЙ" ? TramIcon : TrollIcon)), [stopType]);
+
     return (
         <View style={s.ArrivalItem}>
-            <View style={[s.ArrivalItem_Icon, s.ArrivalItem_Column, s.Padding_5]}>
-                <Image source={BusIcon} style={s.ArrivalItem_IconStyle}/>
+            <View style={[s.ArrivalItem_Icon, stopStyle]}>
+                <View style={s.ArrivalItem_IconContainerStyle}>
+                    <Image source={IconSource} style={s.ArrivalItem_IconStyle}/>
+                </View>
                 <Text style={[s.ArrivalItem_Text, s.ArrivalItem_TextWhite]}>{route_name}</Text>
             </View>
             <View style={[s.ArrivalItem_Column, s.Padding_5]}>

@@ -9,17 +9,17 @@ const useForecast = () => {
 
     const stopId = useSelector((state: RootState) => state.bus_stops?.selectedStop.id);
     const rest_url = useSelector((state: RootState) => state.cities?.selectedCity.rest_url);
-    const { forecast,  isFetching} = useSelector((state: RootState) => {
-        const { forecast, isFetching } = state.forecast;
-        return {forecast:_.map(forecast), isFetching};
+    const { forecast,  isRefreshing, isFetching} = useSelector((state: RootState) => {
+        const { forecast, isRefreshing, isFetching } = state.forecast;
+        return {forecast:_.map(forecast), isRefreshing, isFetching};
     });
 
     const refreshList = useCallback(() => {
-        dispatch.forecast.SET_IS_FETCHING({isFetching: true});
+        dispatch.forecast.SET_IS_REFRESHING({isRefreshing: true});
         setTimeout(() => {
             // @ts-ignore
             dispatch.forecast.getForecast({stopId, rest_url})
-            dispatch.forecast.SET_IS_FETCHING({isFetching: false});
+            dispatch.forecast.SET_IS_REFRESHING({isRefreshing: false});
         }, 1000);
     }, [stopId, rest_url]);
 
@@ -29,12 +29,25 @@ const useForecast = () => {
 
     useFocusEffect(
         useCallback(() => {
-            // @ts-ignore
-            dispatch.forecast.getForecast({stopId, rest_url});
-            // @ts-ignore
-            const timerId = setInterval(() => dispatch.forecast.getForecast({stopId, rest_url}), 10000);
+            let timerId = 0;
+
+            if(stopId) {
+                dispatch.forecast.SET_IS_FETCHING({isFetching: true});
+                setTimeout(() => {
+                    // @ts-ignore
+                    dispatch.forecast.getForecast({stopId, rest_url});
+                }, 1000);
+
+                // @ts-ignore
+                timerId = setInterval(() => dispatch.forecast.getForecast({stopId, rest_url}), 10000);
+            }
             return () => {
-                clearInterval(timerId);
+                if(stopId) {
+                    clearInterval(timerId);
+                }
+                setTimeout(() => {
+                    dispatch.forecast.CLEAR_FORECAST();
+                }, 200)
             }
         }, [stopId, rest_url])
     );
@@ -45,6 +58,7 @@ const useForecast = () => {
         stopId,
         forecast,
         refreshList,
+        isRefreshing,
         isFetching
     }
 }

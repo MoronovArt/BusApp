@@ -6,24 +6,23 @@ import useForecast from "./useForecast";
 
 const ArrivalList = () => {
 
-    const {forecast, stopId, isFetching, refreshList, } = useForecast();
+    const {forecast, stopId, isRefreshing, refreshList, isFetching} = useForecast();
 
     const EmptyList = useCallback(() => {
         return (
             <View style={s.EmptyComponent}>
-                <Text style={s.EmptyText}>{
-                    stopId && forecast.length === 0 ?
-                        "Прогноз по выбранной остановке отсутствует" :
-                        ""}
-                </Text>
+                {
+                    isFetching ?
+                        <ActivityIndicator size={"large"} color={s.ActivityIndicator.color}/> :
+                        <Text style={s.EmptyText}> {stopId ? "Прогноз по выбранной остановке отсутствует" : ""}</Text>
+                }
             </View>
         );
-    }, [forecast.length, stopId]);
+    }, [stopId, isFetching]);
 
     return (
         <FlatList
             data={forecast}
-                  refreshing={true}
             renderItem={
                 ({item}) => <ArrivalItem
                     distance_to_stoppoint={item.distance_to_stoppoint}
@@ -36,7 +35,7 @@ const ArrivalList = () => {
             }
             refreshControl={
                 <RefreshControl
-                    refreshing={isFetching}
+                    refreshing={isRefreshing}
                     onRefresh={refreshList}
                     progressViewOffset={5}
                     tintColor={s.ActivityIndicator.color}

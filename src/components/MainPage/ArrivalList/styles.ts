@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     EmptyComponent: {
         justifyContent: "center",
         alignItems: "center",
-        marginTop: verticalScale(10)
+        marginTop: verticalScale(5)
     },
     EmptyText: {
         fontFamily: 'Montserrat-Medium',

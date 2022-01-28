@@ -175,6 +175,7 @@ export const paramsAPI = {
 export type TStop = {
     name: string,
     id: string,
+    transport_type: string,
     index: number
 }
 

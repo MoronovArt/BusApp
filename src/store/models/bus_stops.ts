@@ -17,7 +17,8 @@ type TState = {
     isFetching: boolean,
     selectedStop: {
         id: string,
-        name: string
+        name: string,
+        transport_type: string
     },
     stops: TStopsSuccessResponse["stops"],
     searchText: string
@@ -31,7 +32,8 @@ export const bus_stops = createModel<RootModel>()({
         isFetching: false,
         selectedStop: {
             id: "",
-            name: ""
+            name: "",
+            transport_type: ""
         },
         stops: {
 
@@ -71,7 +73,8 @@ export const bus_stops = createModel<RootModel>()({
                 ...state,
                 selectedStop: {
                     id: payload.id,
-                    name: payload.name
+                    name: payload.name,
+                    transport_type: payload.transport_type
                 }
             }
         },
@@ -116,8 +119,8 @@ export const bus_stops = createModel<RootModel>()({
                     const sResult = await postAPI.getStopsJson(account_id as string, sSkip, sLimit, sSearchText, stopId, rest_url, cityId);
                     cities.SET_SELECTED_CITY({id: cId, name: cName, account_id: account_id, rest_url, city_info});
                     if(sResult.code === "ok") {
-                        const { name: sName, id: sId} = _.find<TStopsSuccessResponse["stops"]>(sResult.stops, () => true) || {};
-                        bus_stops.SET_SELECTED_STOP({id:sId, name: sName});
+                        const { name: sName, id: sId, transport_type: sTransportType} = _.find<TStopsSuccessResponse["stops"]>(sResult.stops, () => true) || {};
+                        bus_stops.SET_SELECTED_STOP({id:sId, name: sName, transport_type: sTransportType});
                     }
                 }
 

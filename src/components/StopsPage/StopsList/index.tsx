@@ -28,6 +28,7 @@ const StopsList = () => {
                     id={item.id}
                     index={item.index}
                     name={item.name}
+                    transport_type={item.transport_type}
                 />
             }
             refreshControl={

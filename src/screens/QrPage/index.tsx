@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from "react";
-import {Text, StyleSheet, View, ActivityIndicator, Dimensions, LayoutChangeEvent} from "react-native";
+import {Text, StyleSheet, View, ActivityIndicator, Dimensions, LayoutChangeEvent, SafeAreaView} from "react-native";
 import {styles as s} from "./styles";
 import {useCameraDevices} from 'react-native-vision-camera';
 import {Camera} from 'react-native-vision-camera';
@@ -46,7 +46,7 @@ const QrPage = () => {
     }, [barcodes.length]);
 
     return (
-        <View style={s.QrPage}>
+        <SafeAreaView style={s.QrPage}>
             {device != null &&
             hasPermission ? (
                 <>
@@ -62,7 +62,7 @@ const QrPage = () => {
             ): <View style={s.QrLoader}>
                 <ActivityIndicator size="large" color={Colors.PrimaryRed} />
             </View>}
-        </View>
+        </SafeAreaView>
     );
 }
 

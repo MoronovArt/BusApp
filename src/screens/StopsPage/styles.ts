@@ -3,9 +3,11 @@ import Colors from "../../styles/Colors";
 
 export const styles = StyleSheet.create({
     StopsPage_Container: {
-        backgroundColor: Colors.PrimaryRed
+        backgroundColor: Colors.PrimaryRed,
+        flex:1
     },
     StopsPage: {
-        backgroundColor: Colors.Gray
+        backgroundColor: Colors.Gray,
+        flex:1
     }
 });

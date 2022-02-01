@@ -525,7 +525,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ultrastar.BusApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ultrastar.tablotrans;
 				PRODUCT_NAME = BusApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "BusApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -553,7 +553,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ultrastar.BusApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ultrastar.tablotrans;
 				PRODUCT_NAME = BusApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "BusApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

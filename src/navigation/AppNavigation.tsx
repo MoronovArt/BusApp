@@ -1,15 +1,26 @@
-import React, {useMemo} from "react";
+import React, {useEffect, useMemo} from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {StopsPage, MainPage, SettingsPage, QrPage, CitiesPage, CitiesSelectorPage} from "../screens";
-import {useSelector} from "react-redux";
-import {RootState} from "../store";
+import {useDispatch, useSelector} from "react-redux";
+import {Dispatch, RootState} from "../store";
 import {Platform} from "react-native";
+import NetInfo from "@react-native-community/netinfo";
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigation = () => {
+    const dispatch = useDispatch<Dispatch>();
     const selectedCity = useSelector((state: RootState) => state.cities?.selectedCity.id);
     const animation = useMemo(() => Platform.OS === "ios" ? "default" : "fade", []);
+
+    useEffect(() => {
+        const unsubscribe = NetInfo.addEventListener(state => {
+            dispatch.offline.SET_IS_OFFLINE({is_offline: !state.isConnected});
+        });
+        return () => unsubscribe();
+    }, [])
+
+
     return (
         <Stack.Navigator>
             {!selectedCity && <Stack.Screen name={"CitiesSelectorPage"} options={{headerShown: false, animation: animation}} component={CitiesSelectorPage}/>}

@@ -21,11 +21,13 @@ const ArrivalItem = ({distance_to_stoppoint, rem_minutes, route_name, stoppoint_
 
     const IconSource = useMemo(() => (stopType === "АВТОБУС" ? BusIcon : (stopType === "ТРАМВАЙ" ? TramIcon : TrollIcon)), [stopType]);
 
+    const IconSize = useMemo(() => (route_name || "").length <= 3 ? {}: s.ArrivalItem_IconStyleSize, []);
+
     return (
         <View style={s.ArrivalItem}>
             <View style={[s.ArrivalItem_Icon, stopStyle]}>
                 <View style={s.ArrivalItem_IconContainerStyle}>
-                    <Image source={IconSource} style={s.ArrivalItem_IconStyle}/>
+                    <Image source={IconSource} style={[s.ArrivalItem_IconStyle, IconSize]}/>
                 </View>
                 <Text style={[s.ArrivalItem_Text, s.ArrivalItem_TextWhite]}>{route_name}</Text>
             </View>

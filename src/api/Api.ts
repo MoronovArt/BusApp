@@ -6,7 +6,6 @@ import {Alert} from "react-native";
 
 export const globalParameters: TGlobalParameters = {
     clientVersion: 1,
-    timeZone: moment.tz(moment.tz.guess()).format('Z'),
     servUrl: "https://nistk.ru",
     funcParameters: []
 };
@@ -42,7 +41,6 @@ type TGetFuncObjParameters = {
 
 export type TGlobalParameters = {
     clientVersion: number,
-    timeZone: string,
     servUrl: string,
     funcParameters: TFuncParameters[]
 }
@@ -57,10 +55,9 @@ export const paramsAPI = {
         try {
             let respInst;
             const formData = new FormData();
-            const timeout = await AsyncStorage.getItem("TIMEOUT");
             formData.append("body", JSON.stringify(data));
             try {
-                const resultTimeout = Number(timeout) || 10000;
+                const resultTimeout = 10000;
 
                 respInst = await instance.post<AxiosResponse>(srvUrl || '', formData, {headers: {
                         'Accept': 'application/json',
@@ -68,8 +65,14 @@ export const paramsAPI = {
                     }, timeout:  resultTimeout});
             } catch (error) {
                 console.log(error);
+                let message = "";
                 // @ts-ignore
-                Alert.alert("Ошибка", error.message);
+                if(error.message === "Network Error") {
+                    message = "Нет связи с сервером, проверьте соединение с интернетом и повторите попытку.";
+                } else // @ts-ignore
+                    message = error.message;
+
+                Alert.alert("Ошибка", message);
             }
             // @ts-ignore
             return respInst.data;
@@ -82,12 +85,14 @@ export const paramsAPI = {
     async getFuncObjParam<K extends TFuncParameter[]>(funcName: string, funcParametersArr: K): Promise<TGetFuncObjParameters>  {
         //Оборачивает функцию и параметры в объект
         let username = await AsyncStorage.getItem('CUSERNAME') as string;
+        const timezone = moment.tz(moment.tz.guess()).format('Z');
+
         return {
             data: {
                 object_name:funcName,
                 client_version:globalParameters.clientVersion,
                 parameters:funcParametersArr,
-                timezone:globalParameters.timeZone,
+                timezone:timezone,
                 username:username
             }
         }

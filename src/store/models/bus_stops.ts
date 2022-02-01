@@ -95,8 +95,13 @@ export const bus_stops = createModel<RootModel>()({
         const { bus_stops, cities } = dispatch;
 
         return {
-            async getStops(payload: {accountId: string, skip: number, limit: number, searchText?: string, rest_url?: string, cityId?: string}): Promise<any> {
+            async getStops(payload: {accountId: string, skip: number, limit: number, searchText?: string, rest_url?: string, cityId?: string}, state: RootState): Promise<any> {
                 const {accountId, skip, limit, searchText, rest_url, cityId} = payload;
+                const {is_offline} = state.offline;
+                if(is_offline) {
+                    Alert.alert("Ошибка", "Отсутствует соединение с интернетом.");
+                    return;
+                }
                 const result = await postAPI.getStopsJson(accountId, skip, limit, searchText, undefined, rest_url, cityId);
                 if(result.code === 'ok') {
                     bus_stops.SET_STOPS({stops:result.stops, skip, limit, hasMore:result.hasMore, searchText});
@@ -111,6 +116,12 @@ export const bus_stops = createModel<RootModel>()({
                     cities: { skip: cSkip, limit: cLimit, searchText: cSearchText },
                     bus_stops: { skip: sSkip, limit: sLimit, searchText: sSearchText }
                 } = state;
+
+                const {is_offline} = state.offline;
+                if(is_offline) {
+                    Alert.alert("Ошибка", "Отсутствует соединение с интернетом.");
+                    return;
+                }
 
                 const cResult = await postAPI.getCities(cSkip, cLimit, cSearchText, cityId);
 

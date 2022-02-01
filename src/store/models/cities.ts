@@ -90,8 +90,15 @@ export const cities = createModel<RootModel>()({
         const { cities } = dispatch;
 
         return {
-            async getCities(payload: {skip: number, limit: number, searchText?: string}): Promise<any> {
+            async getCities(payload: {skip: number, limit: number, searchText?: string}, state: RootState): Promise<any> {
                 const {skip, limit, searchText} = payload;
+
+                const {is_offline} = state.offline;
+                if(is_offline) {
+                    Alert.alert("Ошибка", "Отсутствует соединение с интернетом.");
+                    return;
+                }
+
                 const result = await postAPI.getCities(skip, limit, searchText);
                 if(result.code === 'ok') {
                     cities.SET_CITIES({cities:result.cities, skip, limit, hasMore:result.hasMore, searchText});

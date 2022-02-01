@@ -3,6 +3,7 @@ import {RootModel} from "./index";
 import {Dispatch, RootState} from "../index";
 import {postAPI, TForecastSuccessResponse} from "../../api/Api";
 import {batch} from "react-redux";
+import {Alert} from "react-native";
 
 interface TState {
     isRefreshing: boolean
@@ -51,6 +52,13 @@ export const forecast = createModel<RootModel>()({
         return {
             async getForecast(payload: {stopId: string, rest_url: string}, rootState: RootState): Promise<any> {
                 const {stopId, rest_url} = payload;
+
+                const {is_offline} = rootState.offline;
+                if(is_offline) {
+                    Alert.alert("Ошибка", "Отсутствует соединение с интернетом.");
+                    return;
+                }
+
                 const result = await postAPI.getForecastJson(stopId, rest_url);
                 batch(() => {
                     if(result.code === 'ok') {

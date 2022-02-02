@@ -13,25 +13,27 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 10,
-        maxWidth: scale(62),
-        minHeight: verticalScale(35)
+        maxWidth: scale(65),
+        minHeight: verticalScale(35),
 
     },
     ArrivalItem_IconContainerStyle: {
         paddingVertical: verticalScale(6),
         paddingLeft: scale(5),
+        justifyContent: "center",
+        alignItems: "center",
     },
     ArrivalItem_IconStyle: {
-        width: undefined,
-        height: undefined,
-        resizeMode: 'contain',
         flex:1,
+        width: "100%",
+        height: "100%",
+        resizeMode: "contain",
         aspectRatio: 1,
+        maxWidth: scale(35)
     },
     ArrivalItem_IconStyleSize: {
-        width: moderateScale(18),
-        height: moderateScale(18),
-        flex:0
+        aspectRatio: 0.5,
+        maxHeight: verticalScale(35)
     },
     ArrivalItem_Text: {
         fontFamily: 'Montserrat-Medium',
@@ -42,7 +44,6 @@ export const styles = StyleSheet.create({
     ArrivalItem_TextWhite: {
         color: Colors.White,
         paddingRight: scale(5),
-        width: scale(32),
         textAlign: "right",
         fontSize: fontScale(16),
         flex:1

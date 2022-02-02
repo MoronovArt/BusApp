@@ -6062,6 +6062,11 @@ react-native-flipper@^0.128.4:
   resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.128.4.tgz#c9ed83fc7220cf0c42f26253152bc274de8cec90"
   integrity sha512-o/Hc3iPmMX6VsbDSn4sW0E3LU10e7teBg8NgmGsyXK/RBXXJcF9pLHxs5snLwXszklK3ZyZL+pQq3b8X00lb8A==
 
+react-native-localize@^2.1.9:
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-2.1.9.tgz#47b13b2d7f8fea95a0e784cdc0269e2028c88857"
+  integrity sha512-n2Bi5P0cII8BrnG23Fs9PmpYcufD3JRbr1IBn3ArIA3Z3cGWg4eebv6am+CgdFC4kTPWUlVzX9fEgEMA+X8d6w==
+
 react-native-reanimated@^2.3.1:
   version "2.3.1"
   resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-2.3.1.tgz"

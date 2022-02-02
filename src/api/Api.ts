@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as _ from "lodash";
 import moment from "moment-timezone";
 import {Alert} from "react-native";
+import * as RNLocalize from 'react-native-localize';
 
 export const globalParameters: TGlobalParameters = {
     clientVersion: 1,
@@ -85,7 +86,8 @@ export const paramsAPI = {
     async getFuncObjParam<K extends TFuncParameter[]>(funcName: string, funcParametersArr: K): Promise<TGetFuncObjParameters>  {
         //Оборачивает функцию и параметры в объект
         let username = await AsyncStorage.getItem('CUSERNAME') as string;
-        const timezone = moment.tz(moment.tz.guess()).format('Z');
+        const deviceTimeZone = RNLocalize.getTimeZone();
+        const timezone = moment().tz(deviceTimeZone).format('Z');
 
         return {
             data: {

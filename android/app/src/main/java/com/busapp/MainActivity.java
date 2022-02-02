@@ -1,4 +1,4 @@
-package com.ultrastar.tablotrans;
+package com.ultrastar.transtablo;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     BusStopsTitle_Text: {
         fontFamily: 'Montserrat-Bold',
         color: Colors.White,
-        fontSize: fontScale(16)
+        fontSize: fontScale(14)
     },
     iconStyle: {
         color: Colors.White,
@@ -33,5 +33,12 @@ export const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Medium',
         color: Colors.White,
         fontSize: fontScale(12),
+    },
+    BusStopsTitle_PinContainer: {
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    ActivityIndicator: {
+        color: Colors.White
     },
 });

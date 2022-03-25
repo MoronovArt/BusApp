@@ -5,7 +5,7 @@ import {fontScale, scale, verticalScale} from "../../../styles/Utils";
 export const styles = StyleSheet.create({
     ListContainer: {
         paddingHorizontal: scale(10),
-        height: "100%"
+        //height: "100%"
     },
     EmptyComponent: {
         justifyContent: "center",

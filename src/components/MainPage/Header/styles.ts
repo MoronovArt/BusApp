@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     Header_Text: {
         fontFamily: 'Montserrat-Bold',
         color: Colors.White,
-        fontSize: fontScale(16),
+        fontSize: fontScale(14),
     },
     Header_CityText: {
         fontFamily: 'Montserrat-Medium',
@@ -28,5 +28,8 @@ export const styles = StyleSheet.create({
     Header_IconContainer: {
         width: scale(46),
         alignItems: "center"
-    }
+    },
+    ActivityIndicator: {
+        color: Colors.White
+    },
 });

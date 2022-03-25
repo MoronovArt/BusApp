@@ -29,6 +29,7 @@ const StopsList = () => {
                     index={item.index}
                     name={item.name}
                     transport_type={item.transport_type}
+                    distance={item.distance}
                 />
             }
             refreshControl={

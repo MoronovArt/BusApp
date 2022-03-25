@@ -1,5 +1,5 @@
 import React, {useMemo} from "react";
-import { styles as s} from "./styles";
+import {styles as s} from "./styles";
 import {Image, Text, TouchableHighlight, View} from "react-native";
 import {IconAntd} from "../../../icons";
 import Colors from "../../../styles/Colors";
@@ -16,7 +16,7 @@ import TrolleyIcon from "../../../assets/troll.png";
 
 
 
-const StopsItem = ({id, index, name, transport_type}: TStop) => {
+const StopsItem = ({id, index, name, transport_type, distance}: TStop) => {
     const dispatch = useDispatch<Dispatch>();
     const navigation = useNavigation();
 
@@ -29,15 +29,22 @@ const StopsItem = ({id, index, name, transport_type}: TStop) => {
     const IconStyle = useMemo(() => (transport_type === "АВТОБУС" ? s.StopsItem_IconStyleBlue : (transport_type === "ТРАМВАЙ" ? s.StopsItem_IconStyleRed : s.StopsItem_IconStyleGreen)), [transport_type]);
 
     return (
-        <TouchableHighlight onPress={() => onPressSelectStop(id, name, transport_type)} underlayColor={Colors.TouchableRed} activeOpacity={0.8}>
-            <View style={s.StopsItem}>
-                <View style={[s.StopsItem_IconContainerStyle, IconStyle]}>
-                    <Image source={IconSource} style={[s.StopsItem_IconStyle]}/>
+        <>
+            <TouchableHighlight onPress={() => onPressSelectStop(id, name, transport_type)}
+                                underlayColor={Colors.TouchableRed} activeOpacity={0.8} style={{zIndex: 2}} accessibilityElementsHidden={false}>
+                <View style={s.StopsItem}>
+                    <View style={[s.StopsItem_IconContainerStyle, IconStyle]}>
+                        <Image source={IconSource} style={[s.StopsItem_IconStyle]}/>
+                    </View>
+                    <Text style={s.StopsItem_Text}>{name}</Text>
+                    <IconAntd title={"right"} color={s.iconStyle.color} size={s.iconStyle.width}/>
                 </View>
-                <Text style={s.StopsItem_Text}>{name}</Text>
-                <IconAntd title={"right"} color={s.iconStyle.color} size={s.iconStyle.width}/>
-            </View>
-        </TouchableHighlight>
+
+            </TouchableHighlight>
+            {distance && <View style={s.StopsItem_Distance}>
+                <Text style={s.StopsItem_DistanceText}>{distance}</Text>
+            </View>}
+        </>
     )
 }
 

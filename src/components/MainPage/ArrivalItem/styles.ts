@@ -15,7 +15,8 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         maxWidth: scale(65),
         minHeight: verticalScale(35),
-
+        borderWidth: 0.5,
+        boxSizing: "border-box"
     },
     ArrivalItem_IconContainerStyle: {
         paddingVertical: verticalScale(6),
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
         height: "100%",
         resizeMode: "contain",
         aspectRatio: 1,
-        maxWidth: scale(35)
+        maxWidth: scale(30)
     },
     ArrivalItem_IconStyleSize: {
         aspectRatio: 0.5,
@@ -45,7 +46,7 @@ export const styles = StyleSheet.create({
         color: Colors.White,
         paddingRight: scale(5),
         textAlign: "right",
-        fontSize: fontScale(16),
+        fontSize: fontScale(15),
         flex:1
     },
     ArrivalItem_Column: {

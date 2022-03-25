@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: scale(4),
         fontFamily: 'Montserrat-Medium',
         color: Colors.Black,
-        fontSize: fontScale(13)
+        fontSize: fontScale(14)
     },
     StopsSearcher_Container: {
         marginHorizontal: scale(10),

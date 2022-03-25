@@ -183,7 +183,8 @@ export type TStop = {
     name: string,
     id: string,
     transport_type: string,
-    index: number
+    index: number,
+    distance?: string
 }
 
 export type TForecast = {
@@ -235,15 +236,15 @@ export type TErrorResponse = {
 }
 
 type TPostAPI = {
-    getStopsJson: (accountId: string, skip: number, limit: number, searchText?: string, stopId?: string, srvUrl?: string, cityId?: string) => Promise<TStopsSuccessResponse | TErrorResponse>
+    getStopsJson: (accountId: string, skip: number, limit: number, searchText?: string, stopId?: string, srvUrl?: string, cityId?: string, curLatitude?: number, curLongitude?: number) => Promise<TStopsSuccessResponse | TErrorResponse>
     getForecastJson: (stopId: string, srvUrl?: string) => Promise<TForecastSuccessResponse | TErrorResponse>
     getCities: (skip: number, limit: number, searchText?: string, cityId?: string) => Promise<TCitiesSuccessResponse | TErrorResponse>
 }
 
 export const postAPI: TPostAPI = {
-    async getStopsJson(accountId,skip, limit, searchText, stopId, srvUrl, cityId) {
+    async getStopsJson(accountId,skip, limit, searchText, stopId, srvUrl, cityId, curLatitude, curLongitude) {
         try {
-            const data = {NACCOUNT_ID: accountId, NFIRST_ROWNUM: skip, NLAST_ROWNUM: limit, CFILTER: searchText, NID:stopId, NCITY_ID: cityId};
+            const data = {NACCOUNT_ID: accountId, NFIRST_ROWNUM: skip, NLAST_ROWNUM: limit, CFILTER: searchText, NID:stopId, NCITY_ID: cityId, NCUR_LATITUDE: curLatitude, NCUR_LONGITUDE: curLongitude };
             const respParams = await paramsAPI.getFuncParamObjWithoutValues("GET_STOPS_JSON", srvUrl);
             const respParamsVal = await paramsAPI.addValuesIntoParamObj(respParams, data);
             const restData = await paramsAPI.callServerFunction(respParamsVal, srvUrl);

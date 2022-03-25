@@ -12,27 +12,20 @@ const StopsSearcher = () => {
 
     const stopName = useSelector((state:RootState) => state.bus_stops?.selectedStop.name);
 
-    const navigation = useNavigation();
-
-    const onSearchPress = useCallback(() => {
-        navigation && navigation.navigate('StopsPage' as never);
-    }, [])
-
     return (
         <View style={s.StopsSearcher_Container}>
             <View style={{flex:1}}>
-                <TouchableOpacity onPress={onSearchPress}>
-                    <View style={s.StopsSearcher_Button}>
-                        <Text style={s.StopsSearcher_Text}
-                              numberOfLines={2}
-                              ellipsizeMode={"tail"}
-                        >{stopName || "Выберите остановку или \nпросканируйте QR код остановки"}</Text>
-                    </View>
-                </TouchableOpacity>
+                <View style={s.StopsSearcher_Button}>
+                    <Text style={s.StopsSearcher_Text}
+                          numberOfLines={2}
+                          ellipsizeMode={"tail"}
+                    >{stopName || "Выберите остановку или \nпросканируйте QR код остановки"}</Text>
+                </View>
             </View>
             <View style={s.StopsSearcher_QrContainer}>
                 <QrButton/>
             </View>
+
         </View>
     );
 }

@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: scale(10),
         paddingVertical: verticalScale(10),
         borderBottomWidth:0.5,
+        zIndex: 2
     },
     StopsItem_Text: {
         flex:1,
@@ -28,13 +29,19 @@ export const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     StopsItem_IconStyleRed: {
-        backgroundColor: Colors.PrimaryRed
+        backgroundColor: Colors.PrimaryRed,
+        borderColor: Colors.Black,
+        borderWidth: 0.5
     },
     StopsItem_IconStyleGreen: {
-        backgroundColor: Colors.Green
+        backgroundColor: Colors.Green,
+        borderColor: Colors.Black,
+        borderWidth: 0.5
     },
     StopsItem_IconStyleBlue: {
-        backgroundColor: Colors.Blue
+        backgroundColor: Colors.Blue,
+        borderColor: Colors.Black,
+        borderWidth: 0.5
     },
     StopsItem_IconContainerStyle: {
         marginRight:scale(4),
@@ -43,5 +50,22 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         height: moderateScale(35),
         width: moderateScale(35)
+    },
+    StopsItem_Distance: {
+        position: "absolute",
+        right: scale(14),
+        bottom: verticalScale(-10),
+        backgroundColor: Colors.Blue,
+        paddingHorizontal: scale(10),
+        borderRadius:100,
+        paddingVertical: verticalScale(1),
+        borderColor: Colors.Black,
+        borderWidth: 0.5,
+        zIndex:9,
+        elevation:9
+    },
+    StopsItem_DistanceText: {
+        color: Colors.White,
+        fontSize: fontScale(13)
     }
 });

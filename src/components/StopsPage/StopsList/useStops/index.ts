@@ -10,6 +10,8 @@ export const useStops = () => {
 
     const { account_id, rest_url, id: cityId } = useSelector((state: RootState) => state.cities?.selectedCity);
 
+    const {latitude: curLatitude, longitude: curLongitude} = useSelector((state: RootState) => state.bus_stops?.currentPosition ? state.bus_stops?.currentPosition : {latitude:null, longitude: null});
+
     const { stops, hasMore, isFetching, searchText, skip, limit } = useSelector((state: RootState) => {
         const { stops, hasMore, isFetching, searchText, skip, limit } = state.bus_stops;
         return {
@@ -23,23 +25,23 @@ export const useStops = () => {
         dispatch.bus_stops.SET_IS_FETCHING({isFetching: true});
         setTimeout(() => {
             // @ts-ignore
-            dispatch.bus_stops.getStops({accountId: account_id, skip:STOPS_LIST_LOAD.SKIP, limit:STOPS_LIST_LOAD.LIMIT, searchText, rest_url, cityId});
+            dispatch.bus_stops.getStops({accountId: account_id, skip:STOPS_LIST_LOAD.SKIP, limit:STOPS_LIST_LOAD.LIMIT, searchText, rest_url, cityId, curLatitude, curLongitude});
             dispatch.bus_stops.SET_IS_FETCHING({isFetching: false});
         }, 1000);
-    }, [searchText, account_id, rest_url]);
+    }, [searchText, account_id, rest_url, curLatitude, curLongitude]);
 
     const getMore = useCallback(() => {
         // @ts-ignore
-        if(hasMore) dispatch.bus_stops.getStops({accountId: account_id, skip:skip + STOPS_LIST_LOAD.LIMIT, limit:limit + STOPS_LIST_LOAD.LIMIT, searchText, rest_url, cityId});
-    }, [account_id, limit, skip, hasMore, searchText, rest_url]);
+        if(hasMore) dispatch.bus_stops.getStops({accountId: account_id, skip:skip + STOPS_LIST_LOAD.LIMIT, limit:limit + STOPS_LIST_LOAD.LIMIT, searchText, rest_url, cityId, curLatitude, curLongitude});
+    }, [account_id, limit, skip, hasMore, searchText, rest_url, curLatitude, curLongitude]);
 
     useEffect(() => {
         // @ts-ignore
-        dispatch.bus_stops.getStops({accountId:account_id, skip:STOPS_LIST_LOAD.SKIP, limit:STOPS_LIST_LOAD.LIMIT, searchText:"", rest_url, cityId});
+        dispatch.bus_stops.getStops({accountId:account_id, skip:STOPS_LIST_LOAD.SKIP, limit:STOPS_LIST_LOAD.LIMIT, searchText:"", rest_url, cityId, curLatitude, curLongitude});
         return () => {
             dispatch.bus_stops.CLEAR_STOPS();
         }
-    }, [account_id, rest_url]);
+    }, [account_id, rest_url, curLatitude, curLongitude]);
 
     return {
         stops,

@@ -4,6 +4,7 @@ import store, {Dispatch, RootState} from "../index";
 import {postAPI, TCitiesSuccessResponse, TStop, TStopsSuccessResponse} from "../../api/Api";
 import * as _ from "lodash";
 import {Alert} from "react-native";
+import {GeoCoordinates, GeoPosition} from "react-native-geolocation-service";
 
 export enum STOPS_LIST_LOAD {
     SKIP = 1,
@@ -21,7 +22,8 @@ type TState = {
         transport_type: string
     },
     stops: TStopsSuccessResponse["stops"],
-    searchText: string
+    searchText: string,
+    currentPosition: GeoCoordinates | null
 }
 
 export const bus_stops = createModel<RootModel>()({
@@ -38,7 +40,8 @@ export const bus_stops = createModel<RootModel>()({
         stops: {
 
         },
-        searchText:""
+        searchText:"",
+        currentPosition: null
     } as TState,
     reducers: {
         SET_STOPS: (state, payload) => {
@@ -89,20 +92,26 @@ export const bus_stops = createModel<RootModel>()({
                 ...state,
                 searchText: payload.searchText
             }
+        },
+        SET_CURRENT_POSITION: (state, payload) => {
+            return {
+                ...state,
+                currentPosition: payload
+            }
         }
     },
     effects: (dispatch: Dispatch) => {
         const { bus_stops, cities } = dispatch;
 
         return {
-            async getStops(payload: {accountId: string, skip: number, limit: number, searchText?: string, rest_url?: string, cityId?: string}, state: RootState): Promise<any> {
-                const {accountId, skip, limit, searchText, rest_url, cityId} = payload;
+            async getStops(payload: {accountId: string, skip: number, limit: number, searchText?: string, rest_url?: string, cityId?: string, curLatitude?: number, curLongitude?: number}, state: RootState): Promise<any> {
+                const {accountId, skip, limit, searchText, rest_url, cityId, curLatitude, curLongitude} = payload;
                 const {is_offline} = state.offline;
                 if(is_offline) {
                     Alert.alert("Ошибка", "Отсутствует соединение с интернетом.");
                     return;
                 }
-                const result = await postAPI.getStopsJson(accountId, skip, limit, searchText, undefined, rest_url, cityId);
+                const result = await postAPI.getStopsJson(accountId, skip, limit, searchText, undefined, rest_url, cityId, curLatitude, curLongitude);
                 if(result.code === 'ok') {
                     bus_stops.SET_STOPS({stops:result.stops, skip, limit, hasMore:result.hasMore, searchText});
                 } else {

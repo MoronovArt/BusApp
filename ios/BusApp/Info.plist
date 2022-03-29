@@ -37,8 +37,12 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) необходим доступ к камере для сканирования QR кода остановки.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) необходим доступ к данным о текущем местоположении, для определения ближайших остановок.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>$(PRODUCT_NAME) необходим доступ к данным о текущем местоположении, для определения ближайших остановок.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>$(PRODUCT_NAME) необходим доступ к данным о текущем местоположении, для определения ближайших остановок.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Bold.ttf</string>

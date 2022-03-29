@@ -19,7 +19,7 @@ const StopsSearcher = () => {
                     <Text style={s.StopsSearcher_Text}
                           numberOfLines={2}
                           ellipsizeMode={"tail"}
-                    >{stopName || "Выберите остановку или \nпросканируйте QR код остановки"}</Text>
+                    >{stopName || "Выберите остановку или просканируйте QR код остановки"}</Text>
                 </View>
             </View>
             <View style={s.StopsSearcher_QrContainer}>

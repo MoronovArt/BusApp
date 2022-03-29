@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import Colors from "../../styles/Colors";
 import {fontScale, moderateScale, scale, verticalScale} from "../../styles/Utils";
 
@@ -18,11 +18,11 @@ export const styles = StyleSheet.create({
         borderColor: Colors.PrimaryRed,
         flex:1,
         backgroundColor: Colors.White,
-        height: moderateScale(55)
+        height: Platform.OS === 'ios' ? moderateScale(65) : moderateScale(55)
     },
     iconStyle: {
         color: Colors.PrimaryRed,
-        width: moderateScale(24)
+        width: Platform.OS === 'ios' ? moderateScale(30) : moderateScale(24)
     },
     SearchInput_Input: {
         flex:1,

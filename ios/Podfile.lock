@@ -331,6 +331,8 @@ PODS:
     - glog
   - react-native-flipper (0.128.4):
     - React-Core
+  - react-native-geolocation-service (5.3.0-beta.4):
+    - React
   - react-native-netinfo (7.1.9):
     - React-Core
   - react-native-safe-area-context (3.3.2):
@@ -403,6 +405,8 @@ PODS:
   - RNBootSplash (4.0.2):
     - React-Core
   - RNCAsyncStorage (1.15.14):
+    - React-Core
+  - RNLocalize (2.1.9):
     - React-Core
   - RNReanimated (2.3.1):
     - DoubleConversion
@@ -490,6 +494,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-flipper (from `../node_modules/react-native-flipper`)
+  - react-native-geolocation-service (from `../node_modules/react-native-geolocation-service`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -506,6 +511,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -580,6 +586,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-flipper:
     :path: "../node_modules/react-native-flipper"
+  react-native-geolocation-service:
+    :path: "../node_modules/react-native-geolocation-service"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
@@ -612,6 +620,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-bootsplash"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -670,6 +680,7 @@ SPEC CHECKSUMS:
   React-jsinspector: d0374f7509d407d2264168b6d0fad0b54e300b85
   React-logger: 933f80c97c633ee8965d609876848148e3fef438
   react-native-flipper: bb8caa2e42294b4f145365138cf4941a125fe953
+  react-native-geolocation-service: c0efb872258ed9240f1003a70fca9e9757e5c785
   react-native-netinfo: 87e5bfaf21ea5c6c110941290aa481dd8e849f98
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-perflogger: 93075d8931c32cd1fce8a98c15d2d5ccc4d891bd
@@ -686,6 +697,7 @@ SPEC CHECKSUMS:
   ReactCommon: 57b69f6383eafcbd7da625bfa6003810332313c4
   RNBootSplash: 5e82ba24a59a07315cbb2bb4855bb8d76fc7e802
   RNCAsyncStorage: ea6b5c280997b2b32a587793163b1f10e580c4f7
+  RNLocalize: 291e5e21b53cd30b5205c10ed95d31b0dc9b8d63
   RNReanimated: da3860204e5660c0dd66739936732197d359d753
   RNScreens: 522705f2e5c9d27efb17f24aceb2bf8335bc7b8e
   RNVectorIcons: 4143ba35feebab8fdbe6bc43d1e776b393d47ac8

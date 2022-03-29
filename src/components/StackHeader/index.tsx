@@ -37,7 +37,7 @@ const StackHeader = ({title}: TStackHeaderProps) => {
                 {title === "Остановки" && <Text style={s.BusStopsTitle_CityText} numberOfLines={1} ellipsizeMode={"tail"}>{`Город ${city}`}</Text>}
                 <Text style={s.BusStopsTitle_Text} numberOfLines={1} ellipsizeMode={"tail"}>{title}</Text>
             </View>}
-            {title !== "QR" && <View style={s.BusStopsTitle_PinContainer}>
+            {title !== "QR" && title !== "Настройки" && <View style={s.BusStopsTitle_PinContainer}>
                 {isLoading ? <ActivityIndicator size={"small"} color={s.ActivityIndicator.color}/> : <PinBlock active={location ? true: false} onPress={onPressPin}/>}
             </View> }
         </View>

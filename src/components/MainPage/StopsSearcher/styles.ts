@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {fontScale, moderateScale, scale, verticalScale} from "../../../styles/Utils";
 import Colors from "../../../styles/Colors";
 
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         paddingVertical: verticalScale(10),
         borderColor: Colors.PrimaryRed,
         borderWidth: 1,
-        height: moderateScale(55)
+        height: Platform.OS === 'ios' ? moderateScale(65) : moderateScale(55)
     },
     StopsSearcher_Text: {
         flex:1,

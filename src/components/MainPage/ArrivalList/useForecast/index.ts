@@ -3,9 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {Dispatch, RootState} from "../../../../store";
 import _ from "lodash";
 import { useFocusEffect } from '@react-navigation/native';
+import {useAppState} from "../../../../hooks";
 
 const useForecast = () => {
     const dispatch = useDispatch<Dispatch>();
+    const appState = useAppState();
 
     const stopId = useSelector((state: RootState) => state.bus_stops?.selectedStop.id);
     const rest_url = useSelector((state: RootState) => state.cities?.selectedCity.rest_url);
@@ -39,7 +41,10 @@ const useForecast = () => {
                 }, 1000);
 
                 // @ts-ignore
-                timerId = setInterval(() => dispatch.forecast.getForecast({stopId, rest_url}), 10000);
+                if(appState === "active") timerId = setInterval(() => {
+                    // @ts-ignore
+                    dispatch.forecast.getForecast({stopId, rest_url})
+                }, 10000);
             }
             return () => {
                 if(stopId) {
@@ -49,7 +54,7 @@ const useForecast = () => {
                     dispatch.forecast.CLEAR_FORECAST();
                 }, 200)
             }
-        }, [stopId, rest_url])
+        }, [stopId, rest_url, appState])
     );
 
 

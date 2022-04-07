@@ -7,7 +7,8 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../store";
 import {PinBlock} from "../../index";
 import {useNavigation} from "@react-navigation/native";
-import {useLocation} from "../../../hooks/useLocation";
+import {useLocation} from "../../../hooks";
+
 
 const MainPageHeader = () => {
 

@@ -58,7 +58,7 @@ export const paramsAPI = {
             const formData = new FormData();
             formData.append("body", JSON.stringify(data));
             try {
-                const resultTimeout = 10000;
+                const resultTimeout = 20000;
 
                 respInst = await instance.post<AxiosResponse>(srvUrl || '', formData, {headers: {
                         'Accept': 'application/json',

@@ -6,7 +6,7 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {PinBlock} from "../index";
-import {useLocation} from "../../hooks/useLocation";
+import {useLocation} from "../../hooks";
 
 interface TStackHeaderProps {
     title: string

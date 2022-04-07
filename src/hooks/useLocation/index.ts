@@ -12,7 +12,7 @@ type TUseLocation = () => [
     setCurrentPosition: (location: GeoCoordinates | null) => void
 ]
 
-export const useLocation:TUseLocation = () => {
+const useLocation:TUseLocation = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const currentPosition = useSelector((state: RootState) => state.bus_stops?.currentPosition);
@@ -149,3 +149,5 @@ export const useLocation:TUseLocation = () => {
         setCurrentPosition
     ]
 }
+
+export default useLocation;

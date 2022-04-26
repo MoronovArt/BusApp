@@ -27,17 +27,20 @@ const useForecast = () => {
 
     useEffect(() => {
         dispatch.forecast.CLEAR_FORECAST();
+        return () => {
+            dispatch.forecast.CLEAR_FORECAST();
+        }
     }, [])
 
     useFocusEffect(
         useCallback(() => {
             let timerId: any = undefined;
             (async () => {
-                if(stopId) {
+                if(stopId && appState === "active") {
                     await dispatch.forecast.SET_IS_FETCHING({isFetching: true});
                     // @ts-ignore
                     await dispatch.forecast.getForecast({stopId, rest_url});
-                    if(appState === "active") timerId = setInterval(() => {
+                    timerId = setInterval(() => {
                         // @ts-ignore
                         dispatch.forecast.getForecast({stopId, rest_url})
                     }, 10000);
@@ -48,9 +51,6 @@ const useForecast = () => {
                 if(stopId) {
                     clearInterval(timerId);
                 }
-                setTimeout(() => {
-                    dispatch.forecast.CLEAR_FORECAST();
-                }, 200)
             }
         }, [stopId, rest_url, appState])
     );

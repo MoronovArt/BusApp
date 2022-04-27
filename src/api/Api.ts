@@ -63,7 +63,7 @@ export const paramsAPI = {
                 respInst = await instance.post<AxiosResponse>(srvUrl || '', formData, {headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'multipart/form-data',
-                    }, timeout:  resultTimeout});
+                    }/*, timeout:  resultTimeout*/});
             } catch (error) {
                 console.log(error);
                 let message = "";
@@ -73,7 +73,7 @@ export const paramsAPI = {
                 } else // @ts-ignore
                     message = error.message;
 
-                Alert.alert("Ошибка", message);
+                //Alert.alert("Ошибка", message);
             }
             // @ts-ignore
             return respInst.data;

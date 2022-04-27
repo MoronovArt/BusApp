@@ -5,7 +5,7 @@ import {fontScale, moderateScale, scale, verticalScale} from "../../../styles/Ut
 export const styles = StyleSheet.create({
     CityInfo: {
         backgroundColor: Colors.PrimaryRed,
-        height:verticalScale(50),
+        //minHeight:verticalScale(50),
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",

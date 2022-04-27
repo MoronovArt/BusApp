@@ -37,10 +37,11 @@ const useForecast = () => {
             let timerId: any = undefined;
             (async () => {
                 if(stopId && appState === "active") {
-                    await dispatch.forecast.SET_IS_FETCHING({isFetching: true});
+                    dispatch.forecast.SET_IS_FETCHING({isFetching: true});
                     // @ts-ignore
                     await dispatch.forecast.getForecast({stopId, rest_url});
                     timerId = setInterval(() => {
+                        dispatch.forecast.SET_IS_FETCHING({isFetching: true});
                         // @ts-ignore
                         dispatch.forecast.getForecast({stopId, rest_url})
                     }, 10000);

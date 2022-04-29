@@ -76,7 +76,7 @@ export const paramsAPI = {
                 //Alert.alert("Ошибка", message);
             }
             // @ts-ignore
-            return respInst.data;
+            return respInst?.data;
 
         } catch(error: any) {
             console.log(error.message);

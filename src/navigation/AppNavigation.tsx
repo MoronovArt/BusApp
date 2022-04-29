@@ -4,7 +4,7 @@ import {StopsPage, MainPage, SettingsPage, QrPage, CitiesPage, CitiesSelectorPag
 import {useDispatch, useSelector} from "react-redux";
 import {Dispatch, RootState} from "../store";
 import {Platform} from "react-native";
-import NetInfo from "@react-native-community/netinfo";
+import NetInfo, {useNetInfo} from "@react-native-community/netinfo";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,13 +12,11 @@ const AppNavigation = () => {
     const dispatch = useDispatch<Dispatch>();
     const selectedCity = useSelector((state: RootState) => state.cities?.selectedCity.id);
     const animation = useMemo(() => Platform.OS === "ios" ? "default" : "fade", []);
+    const netInfo = useNetInfo();
 
     useEffect(() => {
-        const unsubscribe = NetInfo.addEventListener(state => {
-            dispatch.offline.SET_IS_OFFLINE({is_offline: !state.isConnected});
-        });
-        return () => unsubscribe();
-    }, [])
+        dispatch.offline.SET_IS_OFFLINE({is_offline: !netInfo.isConnected, type: netInfo.type});
+    }, [netInfo.isConnected])
 
 
     return (

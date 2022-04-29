@@ -1,4 +1,4 @@
-import {useCallback, useEffect} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Dispatch, RootState} from "../../../../store";
 import _ from "lodash";
@@ -8,6 +8,8 @@ import {useAppState} from "../../../../hooks";
 const useForecast = () => {
     const dispatch = useDispatch<Dispatch>();
     const appState = useAppState();
+    const [timerId, setTimerId] = useState<any>(0);
+    const prevStopId = useRef("");
 
     const stopId = useSelector((state: RootState) => state.bus_stops?.selectedStop.id);
     const rest_url = useSelector((state: RootState) => state.cities?.selectedCity.rest_url);
@@ -34,26 +36,34 @@ const useForecast = () => {
 
     useFocusEffect(
         useCallback(() => {
-            let timerId: any = undefined;
             (async () => {
-                if(stopId && appState === "active") {
+                if(stopId && appState === "active" && prevStopId.current !== stopId) {
+                    //console.log(1, stopId + " " + rest_url + " " + timerId);
                     dispatch.forecast.SET_IS_FETCHING({isFetching: true});
                     // @ts-ignore
                     await dispatch.forecast.getForecast({stopId, rest_url});
-                    timerId = setInterval(() => {
+
+                    clearInterval(timerId);
+
+                    setTimerId(setInterval(() => {
                         dispatch.forecast.SET_IS_FETCHING({isFetching: true});
                         // @ts-ignore
                         dispatch.forecast.getForecast({stopId, rest_url})
-                    }, 10000);
+                    }, 10000));
+
+                    prevStopId.current = stopId;
+
+                    //console.log(2, stopId + " " + rest_url + " " + timerId);
                 }
             })()
 
             return () => {
-                if(stopId) {
+                if(prevStopId.current !== stopId) {
                     clearInterval(timerId);
+                    //console.log(3, stopId + " "+ rest_url + " " + timerId);
                 }
             }
-        }, [stopId, rest_url, appState])
+        }, [stopId, rest_url, timerId, appState])
     );
 
 

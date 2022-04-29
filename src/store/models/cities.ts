@@ -5,6 +5,7 @@ import {STOPS_LIST_LOAD} from "./bus_stops";
 import {Dispatch, RootState} from "../index";
 import * as _ from "lodash";
 import {Alert} from "react-native";
+import NetInfo from "@react-native-community/netinfo";
 
 export enum CITIES_LIST_LOAD {
     SKIP = 1,
@@ -92,9 +93,9 @@ export const cities = createModel<RootModel>()({
         return {
             async getCities(payload: {skip: number, limit: number, searchText?: string}, state: RootState): Promise<any> {
                 const {skip, limit, searchText} = payload;
+                const info = await NetInfo.fetch();
 
-                const {is_offline} = state.offline;
-                if(is_offline) {
+                if(!info.isConnected) {
                     Alert.alert("Ошибка", "Отсутствует соединение с интернетом.");
                     return;
                 }

@@ -1,7 +1,7 @@
 import React, {useCallback} from "react";
 import {styles as s} from './styles';
 import {ActivityIndicator, FlatList, RefreshControl, Text, View} from "react-native";
-import {useStops} from "./useStops";
+import {useStops} from "../../../hooks";
 import {StopsItem} from "../../../components";
 
 const StopsList = () => {
@@ -34,7 +34,7 @@ const StopsList = () => {
             }
             refreshControl={
                 <RefreshControl
-                    refreshing={isFetching}
+                    refreshing={isFetching!}
                     onRefresh={refreshList}
                     progressViewOffset={5}
                     tintColor={s.ActivityIndicator.color}

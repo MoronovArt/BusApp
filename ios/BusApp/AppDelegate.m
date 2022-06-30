@@ -4,6 +4,8 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import "RNBootSplash.h"
+#import <YandexMapsMobile/YMKMapKitFactory.h>
+
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -50,7 +52,7 @@ static void InitializeFlipper(UIApplication *application) {
   [self.window makeKeyAndVisible];
 
   [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
-
+  [YMKMapKit setApiKey: @"39b005e4-a61b-4d0b-85f4-e6b6213fb497"];
   return YES;
 }
 

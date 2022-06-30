@@ -184,7 +184,9 @@ export type TStop = {
     id: string,
     transport_type: string,
     index: number,
-    distance?: string
+    stop_latitude?: string,
+    stop_longitude?: string,
+    distance?: string,
 }
 
 export type TForecast = {

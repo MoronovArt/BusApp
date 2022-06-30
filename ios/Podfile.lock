@@ -459,6 +459,9 @@ PODS:
     - React-RCTImage
   - RNVectorIcons (9.0.0):
     - React-Core
+  - RNYamap (4.0.17):
+    - React
+    - YandexMapsMobile (= 4.0.0-full)
   - vision-camera-code-scanner (0.1.6):
     - GoogleMLKit/BarcodeScanning
     - React-Core
@@ -466,6 +469,7 @@ PODS:
     - React
     - React-callinvoker
     - React-Core
+  - YandexMapsMobile (4.0.0-full)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -536,6 +540,7 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - RNYamap (from `../node_modules/react-native-yamap`)
   - vision-camera-code-scanner (from `../node_modules/vision-camera-code-scanner`)
   - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -569,6 +574,7 @@ SPEC REPOS:
     - OpenSSL-Universal
     - PromisesObjC
     - Protobuf
+    - YandexMapsMobile
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -652,6 +658,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
+  RNYamap:
+    :path: "../node_modules/react-native-yamap"
   vision-camera-code-scanner:
     :path: "../node_modules/vision-camera-code-scanner"
   VisionCamera:
@@ -727,8 +735,10 @@ SPEC CHECKSUMS:
   RNReanimated: da3860204e5660c0dd66739936732197d359d753
   RNScreens: 522705f2e5c9d27efb17f24aceb2bf8335bc7b8e
   RNVectorIcons: 4143ba35feebab8fdbe6bc43d1e776b393d47ac8
+  RNYamap: dfb54d6e6d1153b0369e5ee093c8d2ba1337d3b1
   vision-camera-code-scanner: 75a4ac3c9ce9b4605f5d87cc0f0001bb64bfb4de
   VisionCamera: e3f4eea37f32f9a2ab40ce560940174a5258abaf
+  YandexMapsMobile: 0f3d8c92fad685dc33d07f83eed4eb0166089743
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

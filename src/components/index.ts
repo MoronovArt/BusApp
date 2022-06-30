@@ -11,4 +11,5 @@ export { default as CitiesList } from './CitiesPage/CitiesList';
 export { default as CityInfo } from './MainPage/CityInfo';
 export { default as PinBlock } from './PinBlock';
 export { default as StopsButton } from './MainPage/StopsButton';
+export { default as StopsMap } from './StopsPage/StopsMap';
 

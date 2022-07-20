@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {styles as s} from './styles';
-import YaMap, {CameraPosition, Marker} from 'react-native-yamap';
+import YaMap, {CameraPosition, Marker, VisibleRegion} from 'react-native-yamap';
 import {useLocation, useStops} from '../../../hooks';
 import {TStop} from '../../../api/Api';
 import {useDispatch} from 'react-redux';
@@ -59,8 +59,19 @@ const StopsMap = () => {
   const getCurrentPosition = () => {
     return new Promise<CameraPosition>(resolve => {
       if (ref.current) {
-        ref.current.getCameraPosition(position => {
+        ref.current.getCameraPosition((position: any) => {
           resolve(position);
+        });
+      }
+    });
+  };
+
+  const getVisibleRegion = () => {
+    return new Promise(resolve => {
+      if (ref.current) {
+        ref.current.getVisibleRegion((visibleRegion: VisibleRegion) => {
+          console.log(visibleRegion);
+          resolve(visibleRegion);
         });
       }
     });
@@ -98,21 +109,23 @@ const StopsMap = () => {
     <View style={s.StopsMap_Container}>
       {mapVisible && (
         <YaMap
-          removeClippedSubviews={true}
+          //removeClippedSubviews={true}
+          onCameraPositionChange={() => getVisibleRegion()}
           style={{...StyleSheet.absoluteFillObject}}
           ref={ref}
           //withClusters
           showUserPosition>
-          {stops.map(stop => (
+          {stops.map((stop, index) => (
             <Marker
               key={stop.id}
+              visible={index <= 35 ? true : false}
               anchor={{x: 0.5, y: 1}}
               point={{
                 lat: Number(stop.stop_latitude),
                 lon: Number(stop.stop_longitude),
               }}
               //source={getMarkerSource(stop.transport_type)}
-              //scale={0.19}
+              scale={2}
               onPress={() => onMarkerPress(stop)}
             />
           ))}
